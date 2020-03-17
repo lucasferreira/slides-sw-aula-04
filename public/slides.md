@@ -101,9 +101,14 @@ A ECMA-262 é mantida pelo Comitê Técnico 39 (TC39) atualmente composto por es
 - ECMAScript 2 (Agosto de 1998)
 - ECMAScript 3 (Dezembro de 1999)
 - ECMAScript 4 (abandonada em Julho de 2008)
-- ECMAScript 5 (Dezembro de 2009) <- popular
-- ECMAScript 6 (Junho de 2015) <- atual
-- ECMAScript 7 (Junho de 2016)
+- ECMAScript 5 (Dezembro de 2009) 👈 popular
+- ECMAScript 6 (Junho de 2015) 👈 atual
+- ECMAScript 7 (Junho de 2016) 👈 futura
+- ECMAScript 8 (Junho de 2017)
+- ECMAScript 9 (Junho de 2018)
+- ECMAScript 10 (Junho de 2019)
+
+Ref: https://www.w3schools.com/js/js_versions.asp
 
 ---
 
@@ -129,23 +134,23 @@ JavaScript suporta os elementos de sintaxe de programação estruturada da lingu
 
 ### Dinâmica
 
-Tipagem dinâmica => tipos são associados com valores, não com variáveis
-Baseada em objetos
-Avaliação em tempo de execução => eval
+- Tipagem dinâmica 👉 tipos são associados com valores, não com variáveis
+- Baseada em objetos
+- Avaliação em tempo de execução 👉 eval
 
 --
 
 ### Funcional
 
-Funções de primeira classe => objetos que possuem propriedades e métodos
-Funções aninhadas => são funções definidas dentro de outras funções
+- Funções de primeira classe 👉 objetos que possuem propriedades e métodos
+- Funções aninhadas 👉 são funções definidas dentro de outras funções
 
 --
 
 ### Baseada em Protótipos
 
-Protótipos => mecanismo de herança semelhante a classes
-Funções e métodos => não há distinção entre a definição de uma função e a definição de um método no JavaScript
+- Protótipos 👉 mecanismo de herança semelhante a classes
+- Funções e métodos 👉 não há distinção entre a definição de uma função e a<br />definição de um método no JavaScript
 
 ---
 
@@ -167,7 +172,7 @@ Funções e métodos => não há distinção entre a definição de uma função
 
 --
 
-- Desenvolver aplicativos mobile (PhoneGap e React Native)
+- Desenvolver aplicativos mobile (PhoneGap, IONIC e React Native)
 
 --
 
@@ -201,11 +206,11 @@ var nome = "Vladson";
 
 ## Declaração de Variáveis
 
-`var` => Declara uma variável
+`var` 👉 Declara uma variável
 
-`let` => Declara uma variável local de escopo do bloco
+`let` 👉 Declara uma variável local de escopo do bloco
 
-`const` => Declara uma constante de escopo de bloco, apenas de leitura
+`const` 👉 Declara uma constante de escopo de bloco, apenas de leitura
 
 --
 
@@ -231,7 +236,7 @@ console.log(y); // ReferenceError: y não está definido
 
 ## Tipos de dados (primitivos)
 
-`Boolean` => `true` ou `false`
+`Boolean` 👉 `true` ou `false`
 
 `null`
 
@@ -352,7 +357,7 @@ while (passo < 5) {
 
 --
 
-Use break para parar a execução de um loop ou continue para pular para o próximo passo
+Use `break` para parar a execução de um loop ou continue para pular para o próximo passo
 
 ---
 
@@ -392,7 +397,7 @@ As variáveis definidas no interior de uma função não podem ser acessadas de 
 
 ---
 
-## Arrow Functions
+## Arrow Functions (ES6)
 
 Uma expressão função de seta tem uma sintaxe pequena em comparação com a expressão de função. Arrow functions são sempre anônimas.
 
@@ -420,7 +425,7 @@ const square = numero => numero * numero;
 
 ---
 
-## Operador spread
+## Operador spread (ES6)
 
 O operador spread permite que uma expressão seja expandido em locais onde são esperados vários argumentos (para chamadas de função) ou vários elementos (para arrays).
 
@@ -462,7 +467,7 @@ public class Employee {
 
 ---
 
-## Definições de Classes (JS Moderno)
+## Definições de Classes (JS Moderno - ES6)
 
 ```js
 class Employee {
@@ -544,7 +549,7 @@ O DOM possui muitos métodos, são eles que fazem a ligação entre os nodes (el
 
 --
 
-`getElementById` => obtem um elemento através de seu ID
+`getElementById` 👉 obtem um elemento através de seu ID
 
 ```js
 const myEl = document.getElementsById("start");
@@ -552,7 +557,7 @@ const myEl = document.getElementsById("start");
 
 --
 
-`getElementsByClassName` => obtem um ou vários elementos através de sua classe do CSS
+`getElementsByClassName` 👉 obtem um ou vários elementos através de sua classe do CSS
 
 ```js
 const myContainer = document.getElementsByClassName("container");
@@ -564,7 +569,7 @@ Esse método retorna um HTMLCollection de todos elementos que estiverem contendo
 
 ## Métodos do DOM (mais comuns)
 
-`getElementsByTagName` => obtem um ou vários elementos através da TAG usada
+`getElementsByTagName` 👉 obtem um ou vários elementos através da TAG usada
 
 ```js
 const buttons = document.getElementsByTagName("button");
@@ -572,7 +577,7 @@ const buttons = document.getElementsByTagName("button");
 
 --
 
-`querySelector` => obtem um elemento através de seu seletor CSS
+`querySelector` 👉 obtem um elemento através de seu seletor CSS
 
 ```js
 const resetButton = document.querySelector("form #reset");
@@ -580,7 +585,7 @@ const resetButton = document.querySelector("form #reset");
 
 --
 
-`querySelectorAll` => obtem vários elementos através de seus seletores CSS
+`querySelectorAll` 👉 obtem vários elementos através de seus seletores CSS
 
 ```js
 const myButtons = document.querySelector("header .button");
@@ -630,17 +635,17 @@ meuBotao.addEventListener("click", function(event) {
 
 ## Eventos mais comuns
 
-- `oninput` => quando um elemento input tem seu valor modificado
-- `onclick` => quando ocorre um click com o mouse
-- `onkeypress` => quando pressionar e soltar uma tecla
-- `onkeydown` => quando pressionar uma tecla
-- `onkeyup` => quando soltar uma tecla
-- `onblur` => quando um elemento perde foco
-- `onfocus` => quando um elemento ganha foco
-- `onchange` => quando um input, select ou textarea tem seu valor alterado
-- `onload` => quando a página é carregada
-- `onunload` => quando a página é fechada
-- `onsubmit` => disparado antes de submeter o formulário (útil para realizar validações)
+- `oninput` 👉 quando um elemento input tem seu valor modificado
+- `onclick` 👉 quando ocorre um click com o mouse
+- `onkeypress` 👉 quando pressionar e soltar uma tecla
+- `onkeydown` 👉 quando pressionar uma tecla
+- `onkeyup` 👉 quando soltar uma tecla
+- `onblur` 👉 quando um elemento perde foco
+- `onfocus` 👉 quando um elemento ganha foco
+- `onchange` 👉 quando um input, select ou textarea tem seu valor alterado
+- `onload` 👉 quando a página é carregada
+- `onunload` 👉 quando a página é fechada
+- `onsubmit` 👉 disparado antes de submeter o formulário (útil para realizar validações)
 
 ---
 
