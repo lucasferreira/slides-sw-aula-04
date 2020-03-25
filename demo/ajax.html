@@ -8,8 +8,81 @@
       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
       crossorigin="anonymous"
     />
+    <style type="text/css">
+      .riscado {
+        text-decoration: line-through;
+        font-style: italic;
+        color: #999;
+      }
+    </style>
   </head>
   <body>
-    <!-- sem conteúdo -->
+    <div class="container">
+      <h1>Exemplo de AJAX</h1>
+      <br />
+      <ul id="lista-de-compras">
+        <li class="empty">Nenhum item adicionado</li>
+      </ul>
+      <br />
+      <button id="chamaDados" class="btn btn-danger btn-lg">Clique para carregar</button>
+    </div>
+    <script type="text/javascript">
+      function marcaItem(event) {
+        let el = event.target;
+        if (el.tagName !== "LI") {
+          el = el.parentNode;
+        }
+
+        if (el.className === "riscado") {
+          el.className = "";
+        } else {
+          el.className = "riscado";
+        }
+      }
+
+      function adicionaItem(item, qtd) {
+        let novaLi = document.createElement("li");
+        novaLi.innerHTML = `<strong>${item}</strong> - ${qtd}`;
+        novaLi.addEventListener("click", marcaItem);
+
+        const lista = document.getElementById("lista-de-compras");
+        lista.appendChild(novaLi);
+
+        const emptyLi = lista.getElementsByClassName("empty");
+        if (emptyLi.length > 0) {
+          lista.removeChild(emptyLi[0]);
+        }
+      }
+
+      function carregaDadosComplex() {
+        var minhaRequisicao = new XMLHttpRequest();
+        minhaRequisicao.responseType = "json"; // opcional...
+        minhaRequisicao.onload = function () {
+          if (minhaRequisicao.status === 200) {
+            const listaServidor = minhaRequisicao.response;
+            for(let i = 0; i < listaServidor.length; i++) {
+              adicionaItem(listaServidor[i].item, listaServidor[i].qtd);
+            }
+          }
+        };
+        minhaRequisicao.open("GET", "lista.json");
+        minhaRequisicao.send();
+      }
+
+      function carregaDados() {
+        fetch("lista.json")
+          .then(response => response.json())
+          .then(listaServidor => {
+            for(let i = 0; i < listaServidor.length; i++) {
+              adicionaItem(listaServidor[i].item, listaServidor[i].qtd);
+            }
+          });
+      }
+
+      document.getElementById("chamaDados").addEventListener("click", function (event) {
+        event.preventDefault();
+        carregaDados();
+      });
+    </script>
   </body>
 </html>
