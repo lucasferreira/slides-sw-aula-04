@@ -380,7 +380,7 @@ function square(numero) {
 --
 
 ```js
-var square = function(numero) {
+var square = function (numero) {
   return numero * numero;
 };
 ```
@@ -410,10 +410,10 @@ const square = numero => numero * numero;
 ## Operadores Básicos
 
 - `=` atribuição
-- `-` multiplicação
+- `*` multiplicação
 - `/` divisão
-- `*` subtração
-- `-` soma
+- `-` subtração
+- `+` soma
 - `++` incremento
 - `--` decremento
 - `==` comparação
@@ -445,7 +445,7 @@ function Employee() {
   this.name = "";
   this.dept = "general";
 }
-Employee.prototype.getMyName = function() {
+Employee.prototype.getMyName = function () {
   return this.name;
 };
 ```
@@ -525,7 +525,7 @@ class: center, middle
 
 --
 
-- Essa estrutura pode ser acessada através da variável global document.
+- Essa estrutura pode ser acessada através da variável global `document`.
 
 --
 
@@ -588,7 +588,7 @@ const resetButton = document.querySelector("form #reset");
 `querySelectorAll` 👉 obtem vários elementos através de seus seletores CSS
 
 ```js
-const myButtons = document.querySelector("header .button");
+const myButtons = document.querySelectorAll("header .button");
 ```
 
 ---
@@ -616,7 +616,7 @@ _Forma simples:_
 
 ```js
 const meuBotao = documento.getElementById("meuBotao");
-meuBotao.onclick = function(event) {
+meuBotao.onclick = function (event) {
   alert("Cliquei neste botão.");
 };
 ```
@@ -626,7 +626,7 @@ meuBotao.onclick = function(event) {
 _Forma indicada:_
 
 ```js
-meuBotao.addEventListener("click", function(event) {
+meuBotao.addEventListener("click", function (event) {
   alert("Cliquei neste botão.");
 });
 ```
@@ -659,7 +659,7 @@ class: center, middle
 
 ## E finalmente... AJAX!
 
-Asynchronous Javascript and XML, ou AJAX é originalmente o uso metodológico de tecnologias como Javascript e XML, para tornar páginas Web mais interativas para o usuário, utilizando-se principalmente de solicitações assíncronas de informações
+_Asynchronous Javascript and XML_, ou **AJAX** é originalmente o uso metodológico de tecnologias como Javascript e XML, para tornar páginas Web mais interativas para o usuário, utilizando-se principalmente de solicitações assíncronas de informações
 
 --
 
@@ -674,7 +674,7 @@ Apesar do nome, a utilização de XML não é obrigatória sendo que JSON é amp
 ```js
 var minhaRequisicao = new XMLHttpRequest();
 minhaRequisicao.responseType = "json"; // opcional...
-minhaRequisicao.onload = function() {
+minhaRequisicao.onload = function () {
   if (minhaRequisicao.status === 200) {
     // aqui vem o retorno do carregamento assíncrono
     console.log(minhaRequisicao.response);
@@ -696,7 +696,7 @@ formData.append("nome", "Lee");
 formData.append("sobrenome", "Souza");
 
 var minhaRequisicao = new XMLHttpRequest();
-minhaRequisicao.onload = function() {
+minhaRequisicao.onload = function () {
   if (minhaRequisicao.status === 200) {
     // aqui vem o retorno do carregamento assíncrono
     console.log(minhaRequisicao.response);

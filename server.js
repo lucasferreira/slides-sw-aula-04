@@ -2,6 +2,8 @@ var finalhandler = require("finalhandler");
 var http = require("http");
 var serveStatic = require("serve-static");
 
+var port = 3000;
+
 // Serve up public folder
 var serve = serveStatic("public", { index: ["index.html"] });
 
@@ -11,4 +13,6 @@ var server = http.createServer(function onRequest(req, res) {
 });
 
 // Listen
-server.listen(3000);
+server.listen(port);
+
+console.log(`On-line: http://localhost:${port}`);
