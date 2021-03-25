@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Demo Básico DOM + JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <style type="text/css">
+      .riscado {
+        text-decoration: line-through;
+        font-style: italic;
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Compras no Mercado</h1>
+      <br />
+
+      <ul id="lista-de-compras">
+        <li class="empty">Nenhum item adicionado</li>
+      </ul>
+
+      <form
+        id="formAdd"
+        action="index.html"
+        method="post"
+        style="border-top: 1px solid #ccc; margin-top: 26px; padding-top: 16px;"
+      >
+        <fieldset style="max-width: 320px;">
+          <h3 style="margin-bottom: 21px;">Novo Item</h3>
+          <div class="form-group">
+            <label for="item">Descrição do Item</label>
+            <input type="text" class="form-control" id="item" />
+          </div>
+          <div class="form-group">
+            <label for="qtd">Qtd.</label>
+            <input type="number" class="form-control" id="qtd" value="1" />
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus"></span>
+            Adicionar
+          </button>
+        </fieldset>
+      </form>
+    </div>
+    <script type="text/javascript">
+      function marcaItem(event) {
+        let el = event.target;
+        if(el.tagName !== "LI") {
+          el = el.parentNode;
+        }
+
+        if(el.className === "riscado") {
+          el.className = "";
+        } else {
+          el.className = "riscado";
+        }
+      }
+
+      function adicionaItem() {
+        const item = document.getElementById("item");
+        const qtd = document.getElementById("qtd");
+
+        let novaLi = document.createElement("li");
+        novaLi.innerHTML = `<strong>${item.value}</strong> - ${qtd.value}`;
+        novaLi.addEventListener("click", marcaItem);
+
+        const lista = document.getElementById("lista-de-compras");
+        lista.appendChild(novaLi);
+
+        const emptyLi = lista.getElementsByClassName("empty");
+        if (emptyLi.length > 0) {
+          lista.removeChild(emptyLi[0]);
+        }
+
+        item.value = "";
+        qtd.value = "1";
+      }
+
+      function submitForm(event) {
+        event.preventDefault();
+        adicionaItem();
+      }
+
+      document.getElementById("formAdd").addEventListener("submit", submitForm);
+    </script>
+  </body>
+</html>

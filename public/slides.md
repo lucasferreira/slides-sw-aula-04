@@ -199,7 +199,7 @@ Primeiro ponto a ser destacado é que JavaScript é case-sensitive:
 ```js
 // abaixo temos duas variáveis distintas
 var Nome = "Wesley";
-var nome = "Vladson";
+var nome = "Vinícius";
 ```
 
 ---
