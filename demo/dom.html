@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Demo Basico JS</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <style>
+      #btTeste {
+        margin: 21px 0;
+      }
+      .galeria {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .img-moca {
+        max-width: 240px;
+        border: 1px solid blue;
+        border-collapse: collapse;
+        cursor: pointer;
+      }
+      .img-moca:hover {
+        border-color: red;
+      }
+      #modal-cadastro {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        top: 100px;
+        left: 100px;
+        width: 480px;
+        border: 2px solid #999;
+        border-radius: 10px;
+        padding: 21px;
+        z-index: 1000;
+      }
+      #modal-cadastro h3 {
+        font-size: 21px;
+        margin: 0 0 21px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button id="btTeste">Clique aqui</button>
+      <div class="galeria"></div>
+      <button id="btCadastro">Cadastre-se</button>
+      <div id="modal-cadastro">
+        <h3>Cadastre-se</h3>
+        <form action="" method="post">
+          <div class="form-group">
+            <label for="nome">Seu nome:</label>
+            <input class="form-control" type="text" id="nome" name="nome" placeholder="Insira seu nome Completo" />
+          </div>
+          <button class="btn btn-primary">Cadastrar</button>
+          <button type="button" class="btn btn-danger" id="btnCancelar">Cancelar</button>
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function atualizaImages() {
+        const images = [
+          "https://web.satc.edu.br/wp-content/uploads/2021/03/Parceria-Engª-Computação-UniSatc-4.jpg",
+          "https://web.satc.edu.br/wp-content/uploads/2021/03/zeólita-verde_patente-CTSatc-4.jpg",
+          "https://web.satc.edu.br/wp-content/uploads/2021/03/Parceria-Eng%C2%AA-Computa%C3%A7%C3%A3o-UniSatc-3-1024x683.jpg",
+          "https://web.satc.edu.br/wp-content/uploads/2021/03/Parceria-Eng%C2%AA-Computa%C3%A7%C3%A3o-UniSatc-2-1024x683.jpg",
+          "https://web.satc.edu.br/wp-content/uploads/2021/03/Projeto-Tampou-2021-1024x683.jpg",
+        ];
+        const galeria = document.querySelector(".galeria");
+        galeria.innerHTML = "";
+
+        for (let i = 0; i < images.length; i++) {
+          const imgGaleria = document.createElement("img");
+          imgGaleria.src = images[i];
+          imgGaleria.className = "img-moca";
+          imgGaleria.addEventListener("click", function (event) {
+            if (confirm("Você confirma a remoção desta imagem?")) {
+              const imgClicada = event.target;
+              const pai = imgClicada.parentNode; // que é a .galeria no caso
+              pai.removeChild(imgClicada);
+            }
+          });
+
+          galeria.appendChild(imgGaleria);
+        }
+      }
+
+      const btnTeste = document.getElementById("btTeste");
+      btnTeste.addEventListener("click", function (event) {
+        atualizaImages();
+      });
+
+      const btCadastro = document.getElementById("btCadastro");
+      btCadastro.addEventListener("click", function (event) {
+        const modalCadastro = document.getElementById("modal-cadastro");
+        modalCadastro.style.display = "block";
+      });
+
+      const btnCancelar = document.getElementById("btnCancelar");
+      btnCancelar.addEventListener("click", function (event) {
+        const modalCadastro = document.getElementById("modal-cadastro");
+        modalCadastro.style.display = "none";
+      });
+    </script>
+  </body>
+</html>

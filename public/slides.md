@@ -552,7 +552,7 @@ O DOM possui muitos métodos, são eles que fazem a ligação entre os nodes (el
 `getElementById` 👉 obtem um elemento através de seu ID
 
 ```js
-const myEl = document.getElementsById("start");
+const myEl = document.getElementById("start");
 ```
 
 --
