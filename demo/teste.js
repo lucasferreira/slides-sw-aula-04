@@ -1,67 +1,37 @@
-document.getElementById("olaMundo").onclick = function () {
-  alert("Não me toque");
-};
+var numeros = [1, 2, 7];
 
-var pessoaA = {
-  id: 1,
-  nome: "Lucas",
-  email: "lucas.ferreira@satc.edu.br",
-};
+console.log(numeros);
 
-var pessoaB = { id: 2, nome: "Renan", email: "renanzito@hotmail.com" };
+numeros.push(5);
 
-var pessoas = [pessoaA, pessoaB];
+console.log(numeros);
 
-var agora = new Date();
+numeros.push(8);
 
-for (var i = 0; i < pessoas.length; i++) {
-  console.log(
-    (agora.getHours() >= 18 ? "Boa-noite" : "Bom-dia") + " " + pessoas[i].nome + ", seu e-mail é " + pessoas[i].email
-  );
-}
+console.log(numeros);
 
-function square(numero) {
-  return numero * numero;
-}
+numeros.pop();
 
-console.log(square(9));
+console.log(numeros);
 
-console.log(`ano`, agora.getFullYear());
-console.log(`mes`, agora.getMonth() + 1);
-console.log(`dia`, agora.getDate());
+numeros.splice(1, 1);
 
-var diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+console.log(numeros);
 
-console.log(`dia da semana`, diasSemana[agora.getDay()]);
+numeros.forEach(function (item) {
+      // console.log("ola", item);
+});
 
-/* setInterval(function () {
-  agora = new Date();
-  console.log(`em brasilia ${agora.getHours()}:${agora.getMinutes()}:${agora.getSeconds()}`);
-}, 1000); */
+numeros = numeros.map(function (item) {
+      return item + 1;
+});
 
-class Pessoa {
-  constructor(id, nome, email, idade) {
-    this.id = id;
-    this.nome = nome;
-    this.email = email;
-    this.idade = idade;
-  }
-  comprimentar() {
-    console.log((agora.getHours() >= 18 ? "Boa-noite" : "Bom-dia") + " " + this.nome + ", seu e-mail é " + this.email);
-  }
-  maiorDeIdade() {
-    return this.idade >= 18 && !!this.email;
-  }
-}
+console.log(numeros);
 
-let outraPessoa = new Pessoa(5, "João", "joaozinho@gmail.com", 16);
-console.log(pessoaA);
-console.log(outraPessoa);
+numeros = numeros.reduce(function (total, item) {
+      return total + item;
+}, 0);
 
-outraPessoa.comprimentar();
+console.log(numeros);
 
-if (outraPessoa.maiorDeIdade()) {
-  console.log("Pode entrar " + outraPessoa.nome);
-} else {
-  console.log("Vaza daqui, " + outraPessoa.nome + ", seu pirralho você têm apenas " + outraPessoa.idade);
-}
+Math.ceil(4.3);

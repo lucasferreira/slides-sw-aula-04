@@ -17,7 +17,7 @@ name: capa
 class: center, middle
 count: false
 
-# Front­end: JavaScript e AJAX
+# Front-end: JavaScript e AJAX
 
 ---
 

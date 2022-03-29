@@ -12,7 +12,7 @@
     "start": "node server.js"
   },
   "devDependencies": {
-    "decktape": "^2.9.2",
+    "decktape": "^3.4.1",
     "finalhandler": "^1.1.1",
     "serve-static": "^1.13.2"
   }
