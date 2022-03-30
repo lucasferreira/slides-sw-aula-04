@@ -28,7 +28,7 @@
 
       <form
         id="formAdd"
-        action="index.html"
+        action="lista.html"
         method="post"
         style="border-top: 1px solid #ccc; margin-top: 26px; padding-top: 16px;"
       >
@@ -50,53 +50,38 @@
       </form>
     </div>
     <script type="text/javascript">
-      function checkEmpty() {
-        const listaCompras = document.getElementById("lista-de-compras");
-        const itemsCadastrados = document.querySelectorAll("#lista-de-compras li");
+      function criaItem(item, qtd) {
+        const nLI = document.createElement("li");
 
-        if(itemsCadastrados.length > 1) {
-          const empty = document.querySelector(".empty");
-          if(!!empty) listaCompras.removeChild(empty);
-        }
-      }
+        const nStrong = document.createElement("strong");
+        nStrong.innerText = item;
+        nLI.appendChild(nStrong);
 
-      function criaItem() {
-        const inputItem = document.getElementById("item");
-        const inputQtd = document.getElementById("qtd");
+        const nSpan = document.createElement("span");
+        nSpan.innerText = ` - ${qtd}`;
+        nLI.appendChild(nSpan);
 
-        const li = document.createElement("li");
-        li.addEventListener("click", function(event) {
-          const liClicada = event.target.parentNode;
-          if(liClicada.className.indexOf("riscado") !== -1) {
-            liClicada.className = "";
-          } else {
-            liClicada.className = "riscado";
-          }
-        });
+        const listaCompras = document.querySelector("#lista-de-compras");
+        listaCompras.appendChild(nLI);
 
-        const nameItem = document.createElement("strong");
-        nameItem.innerText = inputItem.value;
-
-        const qtdItem = document.createElement("em");
-        qtdItem.innerText = " - " + inputQtd.value;
-
-        li.appendChild(nameItem);
-        li.appendChild(qtdItem);
-
-        const listaCompras = document.getElementById("lista-de-compras");
-        listaCompras.appendChild(li);
-
-        inputItem.value = "";
-        inputQtd.value = "1";
-
-        checkEmpty();
+        const empty = document.querySelector("#lista-de-compras .empty");
+        empty.style.display = "none";
       }
 
       const formAdd = document.getElementById("formAdd");
       formAdd.addEventListener("submit", function(event) {
         event.preventDefault();
 
-        criaItem();
+        // criar item
+        const itemInput = document.getElementById("item");
+        const qtdInput = document.getElementById("qtd");
+
+        criaItem(itemInput.value, qtdInput.value);
+
+        itemInput.value = "";
+        qtdInput.value = "1";
+
+        itemInput.focus();
       });
     </script>
   </body>

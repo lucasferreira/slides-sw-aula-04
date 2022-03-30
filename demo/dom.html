@@ -10,100 +10,122 @@
       crossorigin="anonymous"
     />
     <style>
-      #btTeste {
-        margin: 21px 0;
+      .container #logo {
+        color: red;
       }
-      .galeria {
-        display: flex;
-        flex-wrap: wrap;
+      .container p strong {
+        color: green;
       }
-      .img-moca {
-        max-width: 240px;
-        border: 1px solid blue;
-        border-collapse: collapse;
-        cursor: pointer;
-      }
-      .img-moca:hover {
-        border-color: red;
-      }
-      #modal-cadastro {
+      #teste {
         display: none;
-        position: absolute;
-        background-color: #fff;
-        top: 100px;
-        left: 100px;
-        width: 480px;
-        border: 2px solid #999;
-        border-radius: 10px;
-        padding: 21px;
-        z-index: 1000;
-      }
-      #modal-cadastro h3 {
-        font-size: 21px;
-        margin: 0 0 21px;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <button id="btTeste">Clique aqui</button>
-      <div class="galeria"></div>
-      <button id="btCadastro">Cadastre-se</button>
-      <div id="modal-cadastro">
-        <h3>Cadastre-se</h3>
-        <form action="" method="post">
-          <div class="form-group">
-            <label for="nome">Seu nome:</label>
-            <input class="form-control" type="text" id="nome" name="nome" placeholder="Insira seu nome Completo" />
-          </div>
-          <button class="btn btn-primary">Cadastrar</button>
-          <button type="button" class="btn btn-danger" id="btnCancelar">Cancelar</button>
-        </form>
+      <h1 id="logo">LOGO DA MINHA EMPRESA</h1>
+
+      <div id="teste">
+        <p><strong>Olá conteúdo de teste meio estranho, não?</strong></p>
       </div>
+
+      <p class="detalhe">Lorem ipsum dolor sit amet</p>
+      <p class="detalhe">Lorem ipsum dolor <strong>sit amet</strong></p>
+      <p class="detalhe">Lorem ipsum dolor sit amet</p>
+      <p>Lorem ipsum dolor sit amet</p>
+      <p>Lorem ipsum dolor <strong>sit amet</strong></p>
+
+      <br />
+      <input id="meuCampo" type="text" class="form-control" placeholder="Digite" />
+
+      <br />
+      <select id="meuSelect" class="form-control">
+        <option value=""></option>
+        <option value="1">Notebook</option>
+        <option value="2">Mouse</option>
+        <option value="3">Teclado</option>
+      </select>
+
+      <br />
+      <button class="btn btn-primary" type="button">
+        Aplicar Mudanças
+      </button>
+
+      <br />
+      <br />
+      <a class="abre-google" href="https://google.com">Vamos para o Google?</a>
     </div>
+
     <script type="text/javascript">
-      function atualizaImages() {
-        const images = [
-          "https://web.satc.edu.br/wp-content/uploads/2021/03/Parceria-Engª-Computação-UniSatc-4.jpg",
-          "https://web.satc.edu.br/wp-content/uploads/2021/03/zeólita-verde_patente-CTSatc-4.jpg",
-          "https://web.satc.edu.br/wp-content/uploads/2021/03/Parceria-Eng%C2%AA-Computa%C3%A7%C3%A3o-UniSatc-3-1024x683.jpg",
-          "https://web.satc.edu.br/wp-content/uploads/2021/03/Parceria-Eng%C2%AA-Computa%C3%A7%C3%A3o-UniSatc-2-1024x683.jpg",
-          "https://web.satc.edu.br/wp-content/uploads/2021/03/Projeto-Tampou-2021-1024x683.jpg",
-        ];
-        const galeria = document.querySelector(".galeria");
-        galeria.innerHTML = "";
+      const hLogo = document.getElementById("logo");
+      // const hLogo = document.querySelector("#logo");
+      console.log(`hLogo`, hLogo);
 
-        for (let i = 0; i < images.length; i++) {
-          const imgGaleria = document.createElement("img");
-          imgGaleria.src = images[i];
-          imgGaleria.className = "img-moca";
-          imgGaleria.addEventListener("click", function (event) {
-            if (confirm("Você confirma a remoção desta imagem?")) {
-              const imgClicada = event.target;
-              const pai = imgClicada.parentNode; // que é a .galeria no caso
-              pai.removeChild(imgClicada);
-            }
-          });
+      const pDetalhe = document.getElementsByClassName("detalhe");
+      // const pDetalhe = document.querySelectorAll(".detalhe");
+      console.log(`pDetalhe`, pDetalhe);
 
-          galeria.appendChild(imgGaleria);
+      const pTodos = document.getElementsByTagName("p");
+      console.log(`pTodos`, pTodos);
+
+      const pStrongs = document.querySelectorAll(".container p strong");
+      console.log(`pStrongs`, pStrongs);
+
+      function aplicaMudancas() {
+        hLogo.style.color = "blue";
+        hLogo.style.marginBottom = "42px";
+        hLogo.style.fontSize = "84px";
+        hLogo.style.border = "1px solid red";
+        hLogo.style.cursor = "pointer";
+
+        hLogo.innerText = "GALERA DA WEB";
+
+        document.getElementById("teste").style.display = "block";
+
+        for (let i = 0; i < pStrongs.length; i++) {
+          pStrongs[i].style.color = "red";
         }
       }
 
-      const btnTeste = document.getElementById("btTeste");
-      btnTeste.addEventListener("click", function (event) {
-        atualizaImages();
+      const botaoAcao = document.querySelector(".btn");
+      botaoAcao.addEventListener("click", function(event) {
+        aplicaMudancas();
+      });
+      botaoAcao.addEventListener("click", function (event) {
+        alert("Cliquei neste botão.");
       });
 
-      const btCadastro = document.getElementById("btCadastro");
-      btCadastro.addEventListener("click", function (event) {
-        const modalCadastro = document.getElementById("modal-cadastro");
-        modalCadastro.style.display = "block";
+      const meuCampo = document.getElementById("meuCampo");
+      meuCampo.addEventListener("input", function(event) {
+        console.log(event);
+        console.log(`Estão digitando isso => `, event.target.value );
       });
 
-      const btnCancelar = document.getElementById("btnCancelar");
-      btnCancelar.addEventListener("click", function (event) {
-        const modalCadastro = document.getElementById("modal-cadastro");
-        modalCadastro.style.display = "none";
+      meuCampo.addEventListener("focus", function(event) {
+        event.target.style.borderWidth = "3px";
+        event.target.style.borderColor = "purple";
+      });
+
+      meuCampo.addEventListener("blur", function(event) {
+        event.target.style.borderWidth = "1px";
+        event.target.style.borderColor = "gray";
+      });
+
+      const meuSelect = document.getElementById("meuSelect");
+      meuSelect.addEventListener("change", function(event) {
+        alert( event.target.value );
+      });
+
+      const abreGoogle = document.querySelector(".abre-google");
+      abreGoogle.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        alert("CLICOU!!!!");
+      });
+
+
+      window.addEventListener("load", function(event) {
+        alert("TERMINOU O F5");
       });
     </script>
   </body>

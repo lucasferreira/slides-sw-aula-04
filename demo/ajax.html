@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Demo Basico JS + AJAX</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <style>
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <ul id="lista-de-compras">
+        <li class="empty">Nenhum item adicionado</li>
+      </ul>
+      <br />
+      <button id="carrega" class="btn btn-primary">Clique para Carregar</button>
+    </div>
+
+    <script type="text/javascript">
+      function criaItem(item, qtd) {
+        const nLI = document.createElement("li");
+
+        const nStrong = document.createElement("strong");
+        nStrong.innerText = item;
+        nLI.appendChild(nStrong);
+
+        const nSpan = document.createElement("span");
+        nSpan.innerText = ` - ${qtd}`;
+        nLI.appendChild(nSpan);
+
+        const listaCompras = document.querySelector("#lista-de-compras");
+        listaCompras.appendChild(nLI);
+
+        const empty = document.querySelector("#lista-de-compras .empty");
+        empty.style.display = "none";
+      }
+
+      function carregaDados() {
+
+        const minhaRequisicao = new XMLHttpRequest();
+        minhaRequisicao.responseType = "json"; // opcional...
+        minhaRequisicao.onload = function () {
+          if (minhaRequisicao.status === 200) {
+            const resultado = minhaRequisicao.response;
+            resultado.forEach(item => {
+              criaItem(item.item, item.qtd);
+            });
+          }
+        };
+        minhaRequisicao.open("GET", "./dados.json");
+        minhaRequisicao.send();
+
+      }
+
+      function carregaDadosFetch() {
+
+        fetch("./dados.json?fetch")
+          .then(response => response.json())
+          .then(resultado => resultado.forEach(({ item, qtd }) => criaItem(item, qtd)));
+
+      }
+
+      const btnCarrega = document.getElementById("carrega");
+      btnCarrega.addEventListener("click", function(event) {
+        carregaDadosFetch();
+      });
+    </script>
+  </body>
+</html>
