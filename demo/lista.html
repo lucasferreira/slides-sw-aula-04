@@ -50,37 +50,71 @@
       </form>
     </div>
     <script type="text/javascript">
+      // função responsável por criar um novo item a partir dos argumentos
+      // item (nome do item) e qtd (quantidade desejada do item)
       function criaItem(item, qtd) {
+        // começamos usando a função `createElement` para criar um novo elemento
+        // de HTML de forma "virtual" (apenas na memória do JS), neste caso o elemento
+        // é o "LI" pois em tela temos uma UL que recebe justamente "LI" com filhos...
         const nLI = document.createElement("li");
 
+        // cada LI possui um STRONG (item) e um SPAN (qtd) para usa composição visual
+        // logo teremos que usar novamente o `createElement` para criar cada um deles
         const nStrong = document.createElement("strong");
+        // o innerText (assim como innerHTML) serve para modificar o conteúdo de um
+        // elemento, independente dele já estar em tela ou apenas em memória
         nStrong.innerText = item;
+        // a função appendChild é muito importante, ela serve para adicionar um
+        // determinado elemento dentro de outro, aqui no caso estamos adicionando
+        // o elemento nStrong (tag strong) dentro do elemento nLI (tag li)
+        // mais para frente tudo isso vai parar na tela do usuário
         nLI.appendChild(nStrong);
 
+        // repetindo a mesma ideia de cima, só que agora com o campo qtd
+        // cuja tag é SPAN
         const nSpan = document.createElement("span");
         nSpan.innerText = ` - ${qtd}`;
         nLI.appendChild(nSpan);
 
+        // aqui estamos obtendo a referência da UL/lista que deverá mostrar os
+        // itens em tela, pegando ela pelo ID logo `#lista-de-compras`
         const listaCompras = document.querySelector("#lista-de-compras");
+        // aqui usando novamente appendChild adicionamos o elemento nLI a lista de
+        // compras. Como a lista já está sendo exibida em tela, o nosso elemento "virtual"
+        // nLI também será jogado para tela, e junto com ele tudo que já adicionamos dentro
+        // dele também vai, como por exemplo o STRONG e o SPAN
         listaCompras.appendChild(nLI);
 
+        // por fim aqui um "truquezinho", se a nossa lista já têm itens adicionados, logo
+        // podemos esconder a frase que indica "Nenhum item adicionado"
         const empty = document.querySelector("#lista-de-compras .empty");
         empty.style.display = "none";
       }
 
+      //
+      // obtendo a referência do formulário linkado ao JavaScript
       const formAdd = document.getElementById("formAdd");
+      // adicionando ao formulário um evento para monitor as "tentativas"
+      // de envio do formulário. Sempre que alguém apertar no botão "Adicionar"
+      // ou tentar enviar o formulário apertando ENTER no teclado
       formAdd.addEventListener("submit", function(event) {
         event.preventDefault();
 
-        // criar item
+        // obtendo a referencia de cada input disposto em tela pelo seu ID
         const itemInput = document.getElementById("item");
         const qtdInput = document.getElementById("qtd");
 
+        // aqui chamamos a função responsável por receber o valro de cada
+        // campo e criar um novo item em tela ~ para melhor compreensão
+        // favor olhar os comentário dentro da função `criaItem`
         criaItem(itemInput.value, qtdInput.value);
 
+        // zerando o valor dos inputs em tela para "liberar" o usuário
+        // para digitação de um novo item
         itemInput.value = "";
         qtdInput.value = "1";
 
+        // movendo (forçadamente) o seletor do mouse de volta ao campo "item"
         itemInput.focus();
       });
     </script>
